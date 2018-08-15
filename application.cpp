@@ -31,12 +31,13 @@ class application_impl {
       uint64_t                _version;
 };
 
-application::application()
-:my(new application_impl()){
-   io_serv = std::make_shared<boost::asio::io_service>();
-}
+application::application() {}
+application::~application() {}
 
-application::~application() { }
+void application::init() {
+  my = std::make_unique<application_impl>();
+  io_serv = std::make_shared<boost::asio::io_service>();
+}
 
 void application::set_version(uint64_t version) {
   my->_version = version;

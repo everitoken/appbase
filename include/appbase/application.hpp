@@ -15,6 +15,7 @@ namespace appbase {
       public:
          ~application();
 
+         void init();
 
          /** @brief Set version
           *
