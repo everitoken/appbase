@@ -77,6 +77,8 @@ namespace appbase {
           *  Wait until quit(), SIGINT or SIGTERM and then shutdown
           */
          void                 exec();
+         void                 pre_exec();
+         void                 exec_one();
          void                 quit();
 
          static application&  instance();
