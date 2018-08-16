@@ -142,6 +142,10 @@ namespace appbase {
          template<typename ChannelDecl>
          auto get_channel() -> std::enable_if_t<is_channel_decl<ChannelDecl>::value, typename ChannelDecl::channel_type&>
          {
+            if(!io_serv) {
+               abort();
+            }
+
             using channel_type = typename ChannelDecl::channel_type;
             auto key = std::type_index(typeid(ChannelDecl));
             auto itr = channels.find(key);
@@ -153,7 +157,13 @@ namespace appbase {
             }
          }
 
-         boost::asio::io_service& get_io_service() { return *io_serv; }
+         boost::asio::io_service& get_io_service() {
+            if(!io_serv) {
+               abort();
+            }
+            return *io_serv;
+         }
+      
       protected:
          template<typename Impl>
          friend class plugin;
