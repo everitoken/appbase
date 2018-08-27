@@ -4,7 +4,7 @@
 #pragma push_macro("N")
 #undef N
 
-#include <boost/asio.hpp>
+#include <boost/asio/io_service.hpp>
 #include <boost/signals2.hpp>
 #include <boost/exception/diagnostic_information.hpp>
 
