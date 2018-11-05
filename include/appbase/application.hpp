@@ -15,8 +15,6 @@ namespace appbase {
       public:
          ~application();
 
-         void init();
-
          /** @brief Set version
           *
           * @param version Version output with -v/--version
