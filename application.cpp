@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <thread>
 
 namespace appbase {
 
@@ -260,26 +261,6 @@ void application::exec() {
    io_serv->run();
 
    shutdown(); /// perform synchronous shutdown
-}
-
-void application::pre_exec() {
-   std::shared_ptr<boost::asio::signal_set> sigint_set(new boost::asio::signal_set(*io_serv, SIGINT));
-   sigint_set->async_wait([sigint_set,this](const boost::system::error_code& err, int num) {
-     quit();
-     sigint_set->cancel();
-   });
-
-   std::shared_ptr<boost::asio::signal_set> sigterm_set(new boost::asio::signal_set(*io_serv, SIGTERM));
-   sigterm_set->async_wait([sigterm_set,this](const boost::system::error_code& err, int num) {
-     quit();
-     sigterm_set->cancel();
-   });
-
-   std::shared_ptr<boost::asio::signal_set> sigpipe_set(new boost::asio::signal_set(*io_serv, SIGPIPE));
-   sigpipe_set->async_wait([sigpipe_set,this](const boost::system::error_code& err, int num) {
-     quit();
-     sigpipe_set->cancel();
-   });
 }
 
 void application::exec_one() {

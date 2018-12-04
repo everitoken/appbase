@@ -83,7 +83,6 @@ namespace appbase {
           *  Should only be executed from one thread.
           */
          void                 exec();
-         void                 pre_exec();
          void                 exec_one();
          void                 quit();
 
