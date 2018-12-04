@@ -79,12 +79,19 @@ namespace appbase {
          void                  shutdown();
 
          /**
-          *  Wait until quit(), SIGINT or SIGTERM and then shutdown
+          *  Wait until quit(), SIGINT or SIGTERM and then shutdown.
+          *  Should only be executed from one thread.
           */
          void                 exec();
          void                 pre_exec();
          void                 exec_one();
          void                 quit();
+
+         /**
+          * If in long running process this flag can be checked to see if processing should be stoppped.
+          * @return true if quit() has been called.
+          */
+         bool                 is_quiting()const;
 
          static application&  instance();
 
