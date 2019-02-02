@@ -173,6 +173,10 @@ namespace appbase {
             }
             return *io_serv;
          }
+
+         auto& get_plugins() {
+            return plugins;
+         }
       
       protected:
          template<typename Impl>
