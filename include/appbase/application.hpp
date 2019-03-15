@@ -209,6 +209,11 @@ namespace appbase {
             return boost::asio::post(*io_serv, pri_queue.wrap(priority, std::forward<Func>(func)));
          }
 
+         auto& get_plugins() {
+            return plugins;
+         }
+      
+
          /**
           * Provide access to execution priority queue so it can be used to wrap functions for
           * prioritized execution.
